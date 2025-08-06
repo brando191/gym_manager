@@ -1,0 +1,19 @@
+<?php // public/nuevo_cliente.php
+include_once '../controllers/ClienteController.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nombre = $_POST['nombre'];
+    $apellido = $_POST['apellido'];
+    $email = $_POST['email'];
+    $telefono = $_POST['telefono'];
+
+    if (guardarCliente($nombre, $apellido, $email, $telefono)) {
+        header("Location: clientes.php"); // volver a la lista si se guardó bien
+        exit;
+    } else {
+        echo "Error al guardar el cliente.";
+    }
+} else {
+    include_once '../views/nuevoClienteForm.php';
+}
+?>
